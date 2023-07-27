@@ -1,0 +1,25 @@
+<h1>Todoooooooooooooooooooooo</h1>
+{{user}}
+<br>
+<br>
+
+<form method="POST" action={%  url 'users:todo' %}>
+    {% csrf_token %}
+    
+    {{form.title}}
+    <input type="submit" name="Create Task">
+</form>
+
+<br>
+<br>
+{% for todo in mytodo %}
+    {% if todo.user.id == user.id %}
+     <a href="{% url 'users:updateTodo' todo.id %}">Update</a> 
+     <br>
+     <br>
+    {{ todo.title }}
+    <br><br>
+    <a href="{% url 'users:delete' todo.id %}">Delete</a> 
+    <br><br>
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,13 @@
+<h1>My profile</h1>
+{% comment %} {% for todo in mytodo %}
+    {% if todo.user.id == user.id %}
+    {{ todo.text }}
+    <br>
+    {% endif %}
+{% endfor %} {% endcomment %}
+<p>
+  
+  {{ user}}
+</p>
+<a href="{%  url 'users:todo' %}">Todos</a>
+<a href="{% url 'users:logout' %}">Logout</a>
