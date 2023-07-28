@@ -17,7 +17,13 @@
      <a href="{% url 'users:updateTodo' todo.id %}">Update</a> 
      <br>
      <br>
-    {{ todo.title }}
+     {% if todo.status == True %}
+	<strike>{{todo}}</strike>
+	{% else %}
+	<span>{{todo}}</span>
+    
+    {% endif %}
+    {% comment %} {{ todo.title }} {% endcomment %}
     <br><br>
     <a href="{% url 'users:delete' todo.id %}">Delete</a> 
     <br><br>
