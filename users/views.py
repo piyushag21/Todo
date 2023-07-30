@@ -155,3 +155,45 @@ def deleteTodo(request, pk):
 
 def index(request):
      return render(request,'users/index.html')
+
+def dashboard(request):
+     all_user = User.objects.all()
+     user = request.user
+     print(user)
+     mytodo = Todo.objects.all()
+     context = {
+          "all_user":all_user,
+          "mytodo":mytodo,
+          "curr":user
+     }
+     return render(request,'users/dashboard.html',context)
+
+def assign(request,pk):
+     print(pk)
+     if request.method == 'POST':
+          all_user = User.objects.all()
+          print(pk)
+          context = {
+               "all_user":all_user,
+              "user":User.objects.get(id=pk),
+              "form":TodoForm(),
+              "curr" :request.user,
+              }
+          print(request.user)
+          assignTo = User.objects.get(id=pk)
+          print(assignTo)
+          print(pk)
+          print(request.user.id)
+          form = TodoForm(request.POST)
+          if form.is_valid():
+            newtodo = form.save()
+            newtodo.user = assignTo
+            newtodo.save()
+          return render(request, "users/dashboard.html",context)
+     context = {
+              "user":request.user,
+              "form":TodoForm(),
+              "assignTo":User.objects.get(id=pk),
+              }
+     
+     return render(request,"users/assign.html",context)

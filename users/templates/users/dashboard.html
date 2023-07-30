@@ -1,0 +1,13 @@
+<h1>This is my dashboard</h1>
+
+{% for person in all_user %}
+{% if person.domain == curr.domain  %}
+{{person}} {{person.is_active}}  <a href="{% url 'users:assign' person.id %}">Assign Todo</a> 
+
+
+<br>
+{% endif %}
+
+{% endfor %}
+
+{% comment %} and person.id != curr.id {% endcomment %}

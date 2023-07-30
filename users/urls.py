@@ -9,7 +9,9 @@ app_name = 'users'
 
 urlpatterns = [
     path('todo/', views.createtodo, name='todo'),
-    path('index',views.index,name = 'index'),
+    path('assign/<int:pk>', views.assign, name='assign'),
+    path('',views.index,name = 'index'),
+    path('dasboard',views.dashboard,name = 'dashboard'),
     path('login/', views.login_view, name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/accounts/login'), name='logout'),
     path('profile/',  login_required(UserView.as_view()), name='profile'),

@@ -11,3 +11,7 @@
 </p>
 <a href="{%  url 'users:todo' %}">Todos</a>
 <a href="{% url 'users:logout' %}">Logout</a>
+
+{% if user.is_domain_admin == True %}
+<a href="{% url 'users:dashboard' %}">Dashboard</a>
+{% endif %}
